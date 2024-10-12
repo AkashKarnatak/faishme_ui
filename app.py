@@ -151,7 +151,7 @@ def get_images(prompt_id, server_address, allow_preview=False):
     return output_images
 
 
-workflow_path = "./t-shirt-demo-compact-api.json"
+workflow_path = "./assets/t-shirt-demo-compact-api.json"
 prompt = load_workflow(workflow_path)
 
 if st.session_state.get("icon") is not None:
@@ -166,11 +166,11 @@ st.set_page_config(
 )
 
 example_files = [
-    "./3062bb2968dd41a79ef07d654a6103b4.jpg",
-    "./11371d01bfdb46f58a6a5cc4e273d611.jpg",
-    "./e0f6611f46c44fd598c6dd515895b682.jpg",
-    "./b5d2993bbf98461fa7f21e42adf4bb79.jpg",
-    "./barca-shirt.png",
+    "./assets/3062bb2968dd41a79ef07d654a6103b4.jpg",
+    "./assets/11371d01bfdb46f58a6a5cc4e273d611.jpg",
+    "./assets/e0f6611f46c44fd598c6dd515895b682.jpg",
+    "./assets/b5d2993bbf98461fa7f21e42adf4bb79.jpg",
+    "./assets/barca-shirt.png",
 ]
 
 # Sidebar
