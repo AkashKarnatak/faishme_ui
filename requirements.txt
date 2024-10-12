@@ -1,0 +1,5 @@
+websocket-client
+Pillow
+streamlit
+st-clickable-images
+requests-toolbelt
