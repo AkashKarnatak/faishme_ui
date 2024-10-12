@@ -170,7 +170,7 @@ example_files = [
     "./11371d01bfdb46f58a6a5cc4e273d611.jpg",
     "./e0f6611f46c44fd598c6dd515895b682.jpg",
     "./b5d2993bbf98461fa7f21e42adf4bb79.jpg",
-    "./pong.png",
+    "./barca-shirt.png",
 ]
 
 # Sidebar

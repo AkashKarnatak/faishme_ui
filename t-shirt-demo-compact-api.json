@@ -1,0 +1,78 @@
+{
+  "1": {
+    "inputs": {
+      "ethnicity": "asian",
+      "gender": "female"
+    },
+    "class_type": "Load Fashion Model",
+    "_meta": {
+      "title": "Load Fashion Model"
+    }
+  },
+  "5": {
+    "inputs": {
+      "mask_grow": 25,
+      "mixed_precision": "fp16",
+      "seed": 4480513334032,
+      "steps": 40,
+      "cfg": 2.5,
+      "image": [
+        "1",
+        0
+      ],
+      "mask": [
+        "1",
+        1
+      ],
+      "refer_image": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "CatVTONWrapper",
+    "_meta": {
+      "title": "CatVTON Wrapper"
+    }
+  },
+  "6": {
+    "inputs": {
+      "image": "b5d2993bbf98461fa7f21e42adf4bb79.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "7": {
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "interpolation": "lanczos",
+      "method": "pad",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "10": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}
