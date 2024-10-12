@@ -157,7 +157,7 @@ prompt = load_workflow(workflow_path)
 if st.session_state.get("icon") is not None:
     icon = st.session_state["icon"]
 else:
-    icon = Image.open("./faishme.png")
+    icon = Image.open("./assets/faishme.png")
     st.session_state["icon"] = icon
 
 st.set_page_config(
