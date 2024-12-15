@@ -244,7 +244,7 @@ if uploaded_file is not None:
 
     with col1:
         st.subheader(":camera: Input")
-        st.image(input_image, use_column_width=True)
+        st.image(input_image)
 
         if st.button(":arrows_counterclockwise: Generate"):
             with st.spinner("Processing..."):
@@ -283,4 +283,4 @@ if uploaded_file is not None:
     if output is not None:
         with col2:
             st.subheader(":tshirt: Output")
-            st.image(output, use_column_width=True)
+            st.image(output)
