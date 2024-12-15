@@ -1,0 +1,1477 @@
+{
+  "10": {
+    "inputs": {
+      "unet_name": "flux1-dev-Q8_0.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "11": {
+    "inputs": {
+      "vae_name": "flux_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "12": {
+    "inputs": {
+      "seed": 826345336928976,
+      "steps": 25,
+      "cfg": 1,
+      "sampler_name": "deis",
+      "scheduler": "beta",
+      "denoise": 1,
+      "model": [
+        "24",
+        0
+      ],
+      "positive": [
+        "27",
+        0
+      ],
+      "negative": [
+        "27",
+        1
+      ],
+      "latent_image": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "13": {
+    "inputs": {
+      "text": [
+        "91",
+        0
+      ],
+      "clip": [
+        "109",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "guidance": 30,
+      "conditioning": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "15": {
+    "inputs": {
+      "conditioning": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "16": {
+    "inputs": {
+      "samples": [
+        "12",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "17": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoaderGGUF",
+    "_meta": {
+      "title": "DualCLIPLoader (GGUF)"
+    }
+  },
+  "20": {
+    "inputs": {
+      "device": "cpu",
+      "clip": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "OverrideCLIPDevice",
+    "_meta": {
+      "title": "Force/Set CLIP Device"
+    }
+  },
+  "21": {
+    "inputs": {
+      "image": "aa.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "22": {
+    "inputs": {
+      "pixels": [
+        "164",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "23": {
+    "inputs": {
+      "samples": [
+        "22",
+        0
+      ],
+      "mask": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "Set Latent Noise Mask"
+    }
+  },
+  "24": {
+    "inputs": {
+      "model": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "Differential Diffusion"
+    }
+  },
+  "27": {
+    "inputs": {
+      "positive": [
+        "14",
+        0
+      ],
+      "negative": [
+        "15",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ],
+      "pixels": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "InstructPixToPixConditioning",
+    "_meta": {
+      "title": "InstructPixToPixConditioning"
+    }
+  },
+  "29": {
+    "inputs": {
+      "face": false,
+      "hair": false,
+      "hat": false,
+      "sunglass": false,
+      "left_arm": false,
+      "right_arm": false,
+      "left_leg": false,
+      "right_leg": false,
+      "upper_clothes": true,
+      "skirt": true,
+      "pants": true,
+      "dress": true,
+      "belt": true,
+      "shoe": false,
+      "bag": true,
+      "scarf": true,
+      "detail_method": "VITMatte",
+      "detail_erode": 12,
+      "detail_dilate": 6,
+      "black_point": 0.15,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "LayerMask: SegformerB2ClothesUltra",
+    "_meta": {
+      "title": "LayerMask: Segformer B2 Clothes Ultra"
+    }
+  },
+  "30": {
+    "inputs": {
+      "kernel_size": 5,
+      "sigma": 5,
+      "mask": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "31": {
+    "inputs": {
+      "mask": [
+        "29",
+        1
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "33": {
+    "inputs": {
+      "image": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "ImageSize",
+    "_meta": {
+      "title": "Image Size"
+    }
+  },
+  "34": {
+    "inputs": {
+      "ckpt_name": "depth_anything_vitl14.pth",
+      "resolution": [
+        "33",
+        0
+      ],
+      "image": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingPreprocessor",
+    "_meta": {
+      "title": "Depth Anything"
+    }
+  },
+  "36": {
+    "inputs": {
+      "context_expand_pixels": 20,
+      "context_expand_factor": 1,
+      "fill_mask_holes": true,
+      "blur_mask_pixels": 50.800000000000004,
+      "invert_mask": false,
+      "blend_pixels": 16,
+      "rescale_algorithm": "bicubic",
+      "mode": "forced size",
+      "force_width": 1024,
+      "force_height": 1024,
+      "rescale_factor": 1,
+      "min_width": 512,
+      "min_height": 512,
+      "max_width": 1024,
+      "max_height": 1024,
+      "padding": 32,
+      "image": [
+        "102",
+        0
+      ],
+      "mask": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "InpaintCrop",
+    "_meta": {
+      "title": "✂️ Inpaint Crop"
+    }
+  },
+  "41": {
+    "inputs": {
+      "text": [
+        "137",
+        0
+      ],
+      "clip": [
+        "109",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "42": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "43": {
+    "inputs": {
+      "conditioning": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "46": {
+    "inputs": {
+      "seed": 184831395895679,
+      "steps": 30,
+      "cfg": 1,
+      "sampler_name": "deis",
+      "scheduler": "beta",
+      "denoise": 0.85,
+      "model": [
+        "24",
+        0
+      ],
+      "positive": [
+        "42",
+        0
+      ],
+      "negative": [
+        "43",
+        0
+      ],
+      "latent_image": [
+        "105",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "47": {
+    "inputs": {
+      "samples": [
+        "46",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "49": {
+    "inputs": {
+      "pixels": [
+        "36",
+        1
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "50": {
+    "inputs": {
+      "rescale_algorithm": "bislerp",
+      "stitch": [
+        "36",
+        0
+      ],
+      "inpainted_image": [
+        "161",
+        0
+      ]
+    },
+    "class_type": "InpaintStitch",
+    "_meta": {
+      "title": "✂️ Inpaint Stitch"
+    }
+  },
+  "52": {
+    "inputs": {
+      "face": true,
+      "hair": true,
+      "body": false,
+      "clothes": false,
+      "accessories": false,
+      "background": false,
+      "confidence": 0.4,
+      "detail_method": "VITMatte",
+      "detail_erode": 6,
+      "detail_dilate": 6,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "images": [
+        "102",
+        0
+      ]
+    },
+    "class_type": "LayerMask: PersonMaskUltra V2",
+    "_meta": {
+      "title": "LayerMask: PersonMaskUltra V2"
+    }
+  },
+  "53": {
+    "inputs": {
+      "expand": 0,
+      "tapered_corners": true,
+      "mask": [
+        "52",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "54": {
+    "inputs": {
+      "kernel_size": 4,
+      "sigma": 4.4,
+      "mask": [
+        "53",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "57": {
+    "inputs": {
+      "ckpt_name": "epicrealismXL_v8Kiss.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "59": {
+    "inputs": {
+      "face": true,
+      "hair": true,
+      "body": true,
+      "clothes": false,
+      "accessories": false,
+      "background": false,
+      "confidence": 0.2,
+      "detail_method": "VITMatte",
+      "detail_erode": 19,
+      "detail_dilate": 14,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "images": [
+        "138",
+        0
+      ]
+    },
+    "class_type": "LayerMask: PersonMaskUltra V2",
+    "_meta": {
+      "title": "LayerMask: PersonMaskUltra V2"
+    }
+  },
+  "61": {
+    "inputs": {
+      "text": "closeup photo of a young redhead woman with natural skin imperfections, fine skin pores, and realistic skin tones, photorealistic, soft diffused lighting, subsurface scattering, hyper-detailed shading, dynamic shadows, 8K resolution, cinematic lighting, masterpiece, intricate details, shot on DSLR with a 50mm lens.",
+      "clip": [
+        "113",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "62": {
+    "inputs": {
+      "text": "pixelated, cartoonish, unrealistic, overexposed, underexposed, flat lighting, distorted, artifacts, noise, extra limbs, deformed features, plastic skin, glow, glowing skin, airbrushed, CGI, over-saturated colors, watermarks, text.",
+      "clip": [
+        "113",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "63": {
+    "inputs": {
+      "seed": 346719936691709,
+      "steps": 25,
+      "cfg": 0.7000000000000001,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.3,
+      "model": [
+        "113",
+        0
+      ],
+      "positive": [
+        "61",
+        0
+      ],
+      "negative": [
+        "62",
+        0
+      ],
+      "latent_image": [
+        "65",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "64": {
+    "inputs": {
+      "pixels": [
+        "138",
+        0
+      ],
+      "vae": [
+        "57",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "65": {
+    "inputs": {
+      "samples": [
+        "64",
+        0
+      ],
+      "mask": [
+        "59",
+        1
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "Set Latent Noise Mask"
+    }
+  },
+  "66": {
+    "inputs": {
+      "samples": [
+        "63",
+        0
+      ],
+      "vae": [
+        "57",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "68": {
+    "inputs": {
+      "expand": 5,
+      "tapered_corners": true,
+      "mask": [
+        "70",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "69": {
+    "inputs": {
+      "kernel_size": 5,
+      "sigma": 5,
+      "mask": [
+        "68",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "70": {
+    "inputs": {
+      "left_eye": true,
+      "left_eyebrow": false,
+      "right_eye": true,
+      "right_eyebrow": false,
+      "lips": true,
+      "tooth": true,
+      "image": [
+        "138",
+        0
+      ]
+    },
+    "class_type": "LayerMask: MediapipeFacialSegment",
+    "_meta": {
+      "title": "LayerMask: Mediapipe Facial Segment"
+    }
+  },
+  "87": {
+    "inputs": {
+      "text": [
+        "97",
+        0
+      ],
+      "find": "mannequin",
+      "replace": "model"
+    },
+    "class_type": "Text Find and Replace",
+    "_meta": {
+      "title": "Text Find and Replace"
+    }
+  },
+  "89": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "177",
+        0
+      ],
+      "text_b": ". ",
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "91": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "89",
+        0
+      ],
+      "text_b": [
+        "87",
+        0
+      ],
+      "text_c": " neutral background."
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "97": {
+    "inputs": {
+      "question": "Describe the clothes on the mannequin.",
+      "device": "cpu",
+      "image": [
+        "164",
+        0
+      ]
+    },
+    "class_type": "Faishme Moondream",
+    "_meta": {
+      "title": "Faishme Moondream"
+    }
+  },
+  "101": {
+    "inputs": {
+      "lora_name": "n4nd4n1.safetensors",
+      "pose_hint": "front"
+    },
+    "class_type": "Faishme Mannequin to Model Loader",
+    "_meta": {
+      "title": "Faishme Mannequin to Model Loader"
+    }
+  },
+  "102": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "164",
+        0
+      ],
+      "source": [
+        "16",
+        0
+      ],
+      "mask": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "105": {
+    "inputs": {
+      "samples": [
+        "49",
+        0
+      ],
+      "mask": [
+        "36",
+        2
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "Set Latent Noise Mask"
+    }
+  },
+  "108": {
+    "inputs": {
+      "lora_name": "flux1-depth-dev-lora.safetensors",
+      "strength_model": 0.8,
+      "strength_clip": 0.8,
+      "model": [
+        "10",
+        0
+      ],
+      "clip": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "109": {
+    "inputs": {
+      "lora_name": "n4nd4n1.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "108",
+        0
+      ],
+      "clip": [
+        "108",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "111": {
+    "inputs": {
+      "lora_name": "more_details.safetensors",
+      "strength_model": 0.6,
+      "strength_clip": 0.6,
+      "model": [
+        "57",
+        0
+      ],
+      "clip": [
+        "57",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "113": {
+    "inputs": {
+      "lora_name": "real-humans-PublicPrompts.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "111",
+        0
+      ],
+      "clip": [
+        "111",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "117": {
+    "inputs": {
+      "mask_bbox_padding": 30,
+      "resolution": 512,
+      "mask_type": "based_on_depth",
+      "mask_expand": 5,
+      "rand_seed": 88,
+      "detect_thr": 0.6,
+      "presence_thr": 0.6,
+      "image": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "MeshGraphormer-DepthMapPreprocessor",
+    "_meta": {
+      "title": "MeshGraphormer Hand Refiner"
+    }
+  },
+  "118": {
+    "inputs": {
+      "context_expand_pixels": 20,
+      "context_expand_factor": 1,
+      "fill_mask_holes": true,
+      "blur_mask_pixels": 50.800000000000004,
+      "invert_mask": false,
+      "blend_pixels": 16,
+      "rescale_algorithm": "bicubic",
+      "mode": "forced size",
+      "force_width": 1024,
+      "force_height": 1024,
+      "rescale_factor": 1,
+      "min_width": 512,
+      "min_height": 512,
+      "max_width": 1024,
+      "max_height": 1024,
+      "padding": 32,
+      "image": [
+        "50",
+        0
+      ],
+      "mask": [
+        "132",
+        0
+      ]
+    },
+    "class_type": "InpaintCrop",
+    "_meta": {
+      "title": "✂️ Inpaint Crop"
+    }
+  },
+  "119": {
+    "inputs": {
+      "text": [
+        "135",
+        0
+      ],
+      "clip": [
+        "109",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "120": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "119",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "121": {
+    "inputs": {
+      "conditioning": [
+        "119",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "122": {
+    "inputs": {
+      "seed": 1051440654336972,
+      "steps": 30,
+      "cfg": 1,
+      "sampler_name": "deis",
+      "scheduler": "beta",
+      "denoise": 0.7000000000000001,
+      "model": [
+        "24",
+        0
+      ],
+      "positive": [
+        "120",
+        0
+      ],
+      "negative": [
+        "121",
+        0
+      ],
+      "latent_image": [
+        "130",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "123": {
+    "inputs": {
+      "samples": [
+        "122",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "125": {
+    "inputs": {
+      "pixels": [
+        "118",
+        1
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "126": {
+    "inputs": {
+      "rescale_algorithm": "bislerp",
+      "stitch": [
+        "118",
+        0
+      ],
+      "inpainted_image": [
+        "141",
+        0
+      ]
+    },
+    "class_type": "InpaintStitch",
+    "_meta": {
+      "title": "✂️ Inpaint Stitch"
+    }
+  },
+  "130": {
+    "inputs": {
+      "samples": [
+        "125",
+        0
+      ],
+      "mask": [
+        "118",
+        2
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "Set Latent Noise Mask"
+    }
+  },
+  "131": {
+    "inputs": {
+      "expand": 0,
+      "tapered_corners": true,
+      "mask": [
+        "117",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "132": {
+    "inputs": {
+      "kernel_size": 4,
+      "sigma": 4,
+      "mask": [
+        "131",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "135": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "hands of ",
+      "text_b": [
+        "174",
+        0
+      ],
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "137": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": "closeup portrait of ",
+      "text_b": [
+        "174",
+        0
+      ],
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "138": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "36",
+        1
+      ],
+      "source": [
+        "47",
+        0
+      ],
+      "mask": [
+        "36",
+        2
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "139": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "138",
+        0
+      ],
+      "source": [
+        "66",
+        0
+      ],
+      "mask": [
+        "59",
+        1
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "141": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "118",
+        1
+      ],
+      "source": [
+        "123",
+        0
+      ],
+      "mask": [
+        "118",
+        2
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "161": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "139",
+        0
+      ],
+      "source": [
+        "138",
+        0
+      ],
+      "mask": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "164": {
+    "inputs": {
+      "image1": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "ImpactMakeImageList",
+    "_meta": {
+      "title": "Make Image List"
+    }
+  },
+  "174": {
+    "inputs": {
+      "value1": [
+        "101",
+        0
+      ]
+    },
+    "class_type": "ImpactMakeAnyList",
+    "_meta": {
+      "title": "Model name"
+    }
+  },
+  "177": {
+    "inputs": {
+      "value1": [
+        "101",
+        1
+      ]
+    },
+    "class_type": "ImpactMakeAnyList",
+    "_meta": {
+      "title": "Pose prompt"
+    }
+  },
+  "181": {
+    "inputs": {
+      "output_path": [
+        "182",
+        0
+      ],
+      "filename_prefix": [
+        "216",
+        0
+      ],
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "dpi": 300,
+      "quality": 100,
+      "optimize_image": "true",
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "182": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "/hands-fix/",
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "184": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "/first-pass/",
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "185": {
+    "inputs": {
+      "output_path": [
+        "184",
+        0
+      ],
+      "filename_prefix": [
+        "213",
+        0
+      ],
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "dpi": 300,
+      "quality": 100,
+      "optimize_image": "true",
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "102",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "186": {
+    "inputs": {
+      "output_path": [
+        "187",
+        0
+      ],
+      "filename_prefix": [
+        "215",
+        0
+      ],
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "dpi": 300,
+      "quality": 100,
+      "optimize_image": "true",
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "187": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "/face-fix/",
+      "text_c": ""
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "213": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "_",
+      "text_c": [
+        "214",
+        0
+      ]
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "214": {
+    "inputs": {
+      "value1": [
+        "101",
+        2
+      ]
+    },
+    "class_type": "ImpactMakeAnyList",
+    "_meta": {
+      "title": "Pose hint"
+    }
+  },
+  "215": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "_",
+      "text_c": [
+        "214",
+        0
+      ]
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "216": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "no",
+      "text_a": [
+        "174",
+        0
+      ],
+      "text_b": "_",
+      "text_c": [
+        "214",
+        0
+      ]
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  }
+}
