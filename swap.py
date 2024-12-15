@@ -143,9 +143,9 @@ def get_images(prompt_id, server_address, allow_preview=False):
                         server_address,
                     )
                     output_data["image_data"] = image_data
-        output_data["file_name"] = image["filename"]
-        output_data["type"] = image["type"]
-        output_images.append(output_data)
+                output_data["file_name"] = image["filename"]
+                output_data["type"] = image["type"]
+                output_images.append(output_data)
 
     return output_images
 
