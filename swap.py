@@ -84,7 +84,8 @@ def track_progress(prompt, ws, prompt_id, progress_bar, progress_text):
                             " Tasks done",
                         )
                         progress_bar.progress(
-                            len(finished_nodes) / len(node_ids), text=progress_text
+                            len(finished_nodes) / (len(node_ids) + 1),
+                            text=progress_text,
                         )
             if message["type"] == "executing":
                 data = message["data"]
@@ -98,7 +99,7 @@ def track_progress(prompt, ws, prompt_id, progress_bar, progress_text):
                         " Tasks done",
                     )
                     progress_bar.progress(
-                        len(finished_nodes) / len(node_ids), text=progress_text
+                        len(finished_nodes) / (len(node_ids) + 1), text=progress_text
                     )
 
                 if data["node"] is None and data["prompt_id"] == prompt_id:
