@@ -19,7 +19,7 @@
   },
   "12": {
     "inputs": {
-      "seed": 826345336928976,
+      "seed": 618153389884597,
       "steps": 25,
       "cfg": 1,
       "sampler_name": "deis",
@@ -130,7 +130,7 @@
   },
   "21": {
     "inputs": {
-      "image": "aa.jpg",
+      "image": "IMG_0294.JPG",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -141,7 +141,7 @@
   "22": {
     "inputs": {
       "pixels": [
-        "164",
+        "228",
         0
       ],
       "vae": [
@@ -233,7 +233,7 @@
       "device": "cuda",
       "max_megapixels": 2,
       "image": [
-        "164",
+        "228",
         0
       ]
     },
@@ -271,7 +271,7 @@
   "33": {
     "inputs": {
       "image": [
-        "164",
+        "228",
         0
       ]
     },
@@ -288,7 +288,7 @@
         0
       ],
       "image": [
-        "164",
+        "228",
         0
       ]
     },
@@ -372,7 +372,7 @@
   },
   "46": {
     "inputs": {
-      "seed": 184831395895679,
+      "seed": 610214577752879,
       "steps": 30,
       "cfg": 1,
       "sampler_name": "deis",
@@ -568,7 +568,7 @@
   },
   "63": {
     "inputs": {
-      "seed": 346719936691709,
+      "seed": 489180196396574,
       "steps": 25,
       "cfg": 0.7000000000000001,
       "sampler_name": "dpmpp_2m",
@@ -744,7 +744,7 @@
       "question": "Describe the clothes on the mannequin.",
       "device": "cpu",
       "image": [
-        "164",
+        "228",
         0
       ]
     },
@@ -755,7 +755,7 @@
   },
   "101": {
     "inputs": {
-      "lora_name": "n4nd4n1.safetensors",
+      "lora_name": "d1sh4.safetensors",
       "pose_hint": "front"
     },
     "class_type": "Faishme Mannequin to Model Loader",
@@ -770,7 +770,7 @@
       "offset_x": 0,
       "offset_y": 0,
       "destination": [
-        "164",
+        "228",
         0
       ],
       "source": [
@@ -824,7 +824,7 @@
   },
   "109": {
     "inputs": {
-      "lora_name": "n4nd4n1.safetensors",
+      "lora_name": "d1sh4.safetensors",
       "strength_model": 1,
       "strength_clip": 1,
       "model": [
@@ -973,7 +973,7 @@
   },
   "122": {
     "inputs": {
-      "seed": 1051440654336972,
+      "seed": 704159066674629,
       "steps": 30,
       "cfg": 1,
       "sampler_name": "deis",
@@ -1222,18 +1222,6 @@
       "title": "🔧 Image Composite"
     }
   },
-  "164": {
-    "inputs": {
-      "image1": [
-        "21",
-        0
-      ]
-    },
-    "class_type": "ImpactMakeImageList",
-    "_meta": {
-      "title": "Make Image List"
-    }
-  },
   "174": {
     "inputs": {
       "value1": [
@@ -1472,6 +1460,150 @@
     "class_type": "StringFunction|pysssss",
     "_meta": {
       "title": "String Function 🐍"
+    }
+  },
+  "217": {
+    "inputs": {
+      "width": 0,
+      "height": 1216,
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "229",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "218": {
+    "inputs": {
+      "detail_method": "VITMatte",
+      "detail_erode": 4,
+      "detail_dilate": 2,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": false,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "217",
+        0
+      ],
+      "birefnet_model": [
+        "223",
+        0
+      ]
+    },
+    "class_type": "LayerMask: BiRefNetUltraV2",
+    "_meta": {
+      "title": "LayerMask: BiRefNet Ultra V2"
+    }
+  },
+  "219": {
+    "inputs": {
+      "context_expand_pixels": 30,
+      "context_expand_factor": 1,
+      "fill_mask_holes": false,
+      "blur_mask_pixels": 0,
+      "invert_mask": false,
+      "blend_pixels": 0,
+      "rescale_algorithm": "lanczos",
+      "mode": "forced size",
+      "force_width": 832,
+      "force_height": 1216,
+      "rescale_factor": 1,
+      "min_width": 512,
+      "min_height": 512,
+      "max_width": 768,
+      "max_height": 768,
+      "padding": 32,
+      "image": [
+        "217",
+        0
+      ],
+      "mask": [
+        "218",
+        1
+      ]
+    },
+    "class_type": "InpaintCrop",
+    "_meta": {
+      "title": "✂️ Inpaint Crop"
+    }
+  },
+  "220": {
+    "inputs": {
+      "width": 832,
+      "height": 1216,
+      "batch_size": 1,
+      "color": 11508110
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "221": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "offset_x": 0,
+      "offset_y": 0,
+      "destination": [
+        "220",
+        0
+      ],
+      "source": [
+        "219",
+        1
+      ],
+      "mask": [
+        "219",
+        2
+      ]
+    },
+    "class_type": "ImageComposite+",
+    "_meta": {
+      "title": "🔧 Image Composite"
+    }
+  },
+  "223": {
+    "inputs": {
+      "model": "BiRefNet-general-epoch_244.pth"
+    },
+    "class_type": "LayerMask: LoadBiRefNetModel",
+    "_meta": {
+      "title": "LayerMask: Load BiRefNet Model"
+    }
+  },
+  "228": {
+    "inputs": {
+      "amount": 5,
+      "image": [
+        "221",
+        0
+      ]
+    },
+    "class_type": "RepeatImageBatch",
+    "_meta": {
+      "title": "RepeatImageBatch"
+    }
+  },
+  "229": {
+    "inputs": {
+      "image1": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "ImpactMakeImageList",
+    "_meta": {
+      "title": "Make Image List"
     }
   }
 }
