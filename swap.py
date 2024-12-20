@@ -4,7 +4,7 @@ import random
 import base64
 import urllib
 import websocket
-from PIL import Image
+from PIL import Image, ImageOps
 import streamlit as st
 from st_clickable_images import clickable_images
 from requests_toolbelt import MultipartEncoder
@@ -59,7 +59,7 @@ def queue_prompt(prompt, client_id, server_address):
     return json.loads(urllib.request.urlopen(req).read())
 
 
-def track_progress(prompt, ws, prompt_id):
+def track_progress(prompt, ws, prompt_id, progress_bar, progress_text):
     node_ids = list(prompt.keys())
     finished_nodes = []
 
@@ -83,6 +83,9 @@ def track_progress(prompt, ws, prompt_id):
                             len(node_ids),
                             " Tasks done",
                         )
+                        progress_bar.progress(
+                            len(finished_nodes) / len(node_ids), text=progress_text
+                        )
             if message["type"] == "executing":
                 data = message["data"]
                 if data["node"] not in finished_nodes:
@@ -94,8 +97,12 @@ def track_progress(prompt, ws, prompt_id):
                         len(node_ids),
                         " Tasks done",
                     )
+                    progress_bar.progress(
+                        len(finished_nodes) / len(node_ids), text=progress_text
+                    )
 
                 if data["node"] is None and data["prompt_id"] == prompt_id:
+                    progress_bar.empty()
                     break  # Execution is done
         else:
             continue
@@ -247,38 +254,34 @@ if uploaded_file is not None:
         st.image(ImageOps.exif_transpose(Image.open(uploaded_file)))
 
         if st.button(":arrows_counterclockwise: Generate"):
-            with st.spinner("Processing..."):
-                try:
-                    ws, server_address, client_id = open_websocket_connection()
-                    res = upload_image(input_image, filename, server_address)
-                    filename = res["name"]
-                    print("Uploaded file name", filename)
+            try:
+                ws, server_address, client_id = open_websocket_connection()
+                res = upload_image(input_image, filename, server_address)
+                filename = res["name"]
+                print("Uploaded file name", filename)
 
-                    prompt['101']['inputs']['lora_name'] = prompt['109']['inputs']['lora_name'] = 'd1sh4.safetensors'
-                    prompt['101']['inputs']['pose_hint'] = 'front'
-                    prompt['21']['inputs']['image'] = filename
-                    prompt['12']['inputs']['seed'] = random.randint(
-                        10**14, 10**15 - 1
-                    )
-                    prompt['46']['inputs']['seed'] = random.randint(
-                        10**14, 10**15 - 1
-                    )
-                    prompt['63']['inputs']['seed'] = random.randint(
-                        10**14, 10**15 - 1
-                    )
-                    prompt['122']['inputs']['seed'] = random.randint(
-                        10**14, 10**15 - 1
-                    )
+                prompt["101"]["inputs"]["lora_name"] = prompt["109"]["inputs"][
+                    "lora_name"
+                ] = "d1sh4.safetensors"
+                prompt["101"]["inputs"]["pose_hint"] = "front"
+                prompt["21"]["inputs"]["image"] = filename
+                prompt["12"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
+                prompt["46"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
+                prompt["63"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
+                prompt["122"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
 
-                    res = queue_prompt(prompt, client_id, server_address)
-                    prompt_id = res["prompt_id"]
-                    track_progress(prompt, ws, prompt_id)
-                    images = get_images(prompt_id, server_address, False)
-                    # output_path = "./output"
-                    # save_image(images, output_path, False)
-                    output = images[-1]["image_data"]
-                finally:
-                    ws.close()
+                res = queue_prompt(prompt, client_id, server_address)
+                prompt_id = res["prompt_id"]
+                progress_text = "Generating image. Please wait..."
+                progress_bar = st.progress(0, text=progress_text)
+
+                track_progress(prompt, ws, prompt_id, progress_bar, progress_text)
+                images = get_images(prompt_id, server_address, False)
+                # output_path = "./output"
+                # save_image(images, output_path, False)
+                output = images[-1]["image_data"]
+            finally:
+                ws.close()
 
     if output is not None:
         with col2:
