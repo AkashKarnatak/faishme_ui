@@ -229,7 +229,7 @@ with st.sidebar:
             )
             st.image(model_details[name]["image"])
 
-    st.subheader(":arrow_up: Upload Flatlay T-shirt image")
+    st.subheader(":arrow_up: Upload mannequin or model image")
     uploaded_file = st.file_uploader("Choose image file", accept_multiple_files=False)
 
     gender = st.selectbox(
@@ -240,7 +240,7 @@ with st.sidebar:
 # Body
 st.header("Faishme - AI for your Fashion")
 st.write(
-    "Input instructions: This is a basic proof of concept to showcase our product. Currently, the demo only supports flatlay images of collarless t-shirts. The images should be well-lit with a distinct background, ensuring the garment is clearly visible. Users can upload the flatlay image from the left sidebar and specify the fashion model's ethnicity and gender. As this is a very preliminary product, we currently handle generation requests sequentially, so the process might take some time"
+    "Input instructions: This is a basic proof of concept to showcase our product. The images should be well-lit with a distinct background, ensuring the garment is clearly visible. Users can upload the cloth image from the left sidebar and choose a specific fashion model. As this is a very preliminary product, we currently handle generation requests sequentially, so the process might take some time"
 )
 
 col1, col2 = st.columns(2)
