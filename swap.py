@@ -207,9 +207,9 @@ with st.sidebar:
         ("Female", "Male"),
     )
     if gender == "Female":
-        ethnicity = st.selectbox("Choose fashion model", female_models_list)
+        model_name = st.selectbox("Choose fashion model", female_models_list)
     else:
-        ethnicity = st.selectbox("Choose fashion model", male_models_list)
+        model_name = st.selectbox("Choose fashion model", male_models_list)
 
     st.subheader("Available fashion models")
     col1, col2 = st.columns(2)
@@ -232,10 +232,10 @@ with st.sidebar:
     st.subheader(":arrow_up: Upload mannequin or model image")
     uploaded_file = st.file_uploader("Choose image file", accept_multiple_files=False)
 
-    gender = st.selectbox(
+    pose_hint = st.selectbox(
         "Pose hint",
-        ("Front", "Side", "Back"),
-    )
+        ("Front", "Side", "Back", "Closeup"),
+    ).lower()
 
     batch_size = st.number_input(
         "Batch size", value=1, placeholder="Batch size", min_value=1, max_value=5
@@ -269,8 +269,8 @@ if uploaded_file is not None:
 
                 prompt["101"]["inputs"]["lora_name"] = prompt["109"]["inputs"][
                     "lora_name"
-                ] = "d1sh4.safetensors"
-                prompt["101"]["inputs"]["pose_hint"] = "front"
+                ] = model_details[model_name]["lora"]
+                prompt["101"]["inputs"]["pose_hint"] = pose_hint
                 prompt["21"]["inputs"]["image"] = filename
                 prompt["228"]["inputs"]["amount"] = batch_size or 1
                 prompt["12"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
