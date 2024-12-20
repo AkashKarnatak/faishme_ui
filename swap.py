@@ -244,7 +244,7 @@ if uploaded_file is not None:
 
     with col1:
         st.subheader(":camera: Input")
-        st.image(input_image)
+        st.image(ImageOps.exif_transpose(Image.open(uploaded_file)))
 
         if st.button(":arrows_counterclockwise: Generate"):
             with st.spinner("Processing..."):
