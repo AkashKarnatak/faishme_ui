@@ -237,6 +237,12 @@ with st.sidebar:
         ("Front", "Side", "Back"),
     )
 
+    batch_size = st.number_input(
+        "Batch size", value=1, placeholder="Batch size", min_value=1, max_value=5
+    )
+
+    debug = st.checkbox("Debug")
+
 # Body
 st.header("Faishme - AI for your Fashion")
 st.write(
@@ -266,6 +272,7 @@ if uploaded_file is not None:
                 ] = "d1sh4.safetensors"
                 prompt["101"]["inputs"]["pose_hint"] = "front"
                 prompt["21"]["inputs"]["image"] = filename
+                prompt["228"]["inputs"]["amount"] = batch_size or 1
                 prompt["12"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
                 prompt["46"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
                 prompt["63"]["inputs"]["seed"] = random.randint(10**14, 10**15 - 1)
@@ -280,11 +287,14 @@ if uploaded_file is not None:
                 images = get_images(prompt_id, server_address, False)
                 # output_path = "./output"
                 # save_image(images, output_path, False)
-                output = images[-1]["image_data"]
+                output = [
+                    img["image_data"] for img in images[-batch_size * (not debug) :]
+                ]
             finally:
                 ws.close()
 
     if output is not None:
         with col2:
             st.subheader(":tshirt: Output")
-            st.image(output)
+            for img in output:
+                st.image(img)
